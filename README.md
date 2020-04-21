@@ -38,14 +38,14 @@ $ node bin/envcheck.js
 $ npm start 
 ```
 
-重建并查看API文档复制
+重建并查看API文档
 ```
-$ mkdocs.sh
+$ npm run mkdocs
 ```
 
-查看API文档复制
+查看API文档
 ```
-$ viewdocs.sh
+$ npm run viewdocs
 ```
 
 执行单元测试复制
