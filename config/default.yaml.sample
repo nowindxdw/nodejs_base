@@ -6,15 +6,15 @@ server:
 
 # MySQL连接参数配置
 mysql:
-    cloudDBPrefix:    "RecruitDB"    # Cloud数据库名称前缀
-    host: localhost                  # MySQL主机host
-    user: root                # MySQL用户名
+    cloudDBPrefix:    "myDB"    # Cloud数据库名称前缀
+    host: localhost             # MySQL主机host
+    user: root                  # MySQL用户名
     password: "100821"          # MySQL密码
-    port: 3306                # 默认Mysql端口
-    maxConnection: 20         # 连接池最大数量
-    minConnection: 2          # 连接池最小数量
-    idle: 300                 # idle时长
-    supportBigNumbers: true   # 设定MySQL支持BigNumber
+    port: 3306                  # 默认Mysql端口
+    maxConnection: 20           # 连接池最大数量
+    minConnection: 2            # 连接池最小数量
+    idle: 300                   # idle时长
+    supportBigNumbers: true     # 设定MySQL支持BigNumber
     bigNumberStrings: true
     debugMode: false
 
@@ -35,6 +35,8 @@ baiduAIsecretKey: cSLte0nzBCn8eTjUOzUs6RhSXMX9PMRY
 # face++ ak
 faceApiKey: NF3aaauNhqsW4r3UHX0kPsHj2cesYpmm     # face++ api key
 faceApiSecret: SiYk_gJuaBdql8WLah3hSoZCS_UuTZ4i     # face++ api secret
+
+
 # redis设置
 redis:
     host: 127.0.0.1
@@ -42,10 +44,8 @@ redis:
     user: user
     password: romens
     database-number: 3
-    redisPrefix : "backendSample"
-    kue-prefix: 'q'               # kue前缀
-    kue-port: 3050                # kue队列ui端口
-    kue-attempts: 1               # kue重试次数
+
+
 # token设置
 auth:
     on    : true              # 是否开启身份校验
@@ -55,13 +55,10 @@ auth:
 
 # email配置
 email:
-    fromUser : "robot@daweixiao.top"
+    fromUser : "example@example.com"
     passWord : "Admin321"
     host :     "smtp.mxhichina.com"
     port :     465
-##############################################
-# 以下为高级配置，生产环境中严禁修改
-##############################################
 
 # 是否启用swagger mock模式
 mockMode: true

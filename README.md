@@ -52,7 +52,6 @@ $ npm test
 
 - dir structer
 
-|name -- desc |
 >
 >bin    -- project shell scripts
 >

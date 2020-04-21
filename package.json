@@ -1,6 +1,6 @@
 {
-  "name": "Recruitments",
-  "version": "0.0.3",
+  "name": "nodejsBase",
+  "version": "0.0.1",
   "description": "daweiHome",
   "main": "app.js",
   "scripts": {
