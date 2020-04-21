@@ -1,0 +1,138 @@
+	<div id="site_content">
+	  <div id="banner_image">
+	    <div id="slider-wrapper">        
+          <div id="slider" class="nivoSlider">
+			  <a href="/v1/api/faceBaidu" target="view_window"><img src="/nightsky/images/baiduFace.jpg" alt="" /></a>
+			  <a href="/v1/api/facePlusPlus" target="view_window"><img src="/nightsky/images/facep2.jpg" alt="" /></a>
+		  </div><!--close slider-->
+		</div><!--close slider_wrapper-->
+	  </div><!--close banner_image-->	
+
+	  <div class="sidebar_container">       
+		<div class="sidebar">
+          <div class="sidebar_item">
+            <h2><%= content.welcome.title%></h2>
+            <p><%= content.welcome.content%></p>
+          </div><!--close sidebar_item--> 
+        </div><!--close sidebar-->     		
+		<div class="sidebar">
+          <div class="sidebar_item">
+            <h2><%= content.latestUpdate.title%></h2>
+            <h3><%= content.latestUpdate.title1%></h3>
+            <p><%= content.latestUpdate.content1%></p>
+		  </div><!--close sidebar_item--> 
+        </div><!--close sidebar-->
+		<div class="sidebar">
+          <div class="sidebar_item">
+            <h3><%= content.latestUpdate.title2%></h3>
+            <p><%= content.latestUpdate.content2%></p>
+		  </div><!--close sidebar_item--> 
+        </div><!--close sidebar-->  		
+      </div><!--close sidebar_container-->		  
+	 
+	  <div id="content">
+        <div class="content_item">
+		  <h1><%= content.bodycontent.title%></h1>
+		  <%var contentTxt = content.bodycontent.content.split('|')%>
+		  <% for (var n=0;n<contentTxt.length;n++){%>
+	      <p><%= contentTxt[n]%></p>
+		  <%}%>
+		</div><!--close content_item-->
+		  <div class="content_container">
+			  <p class="button_small"><%= todays.weather%></p>
+			  <div class="button">
+				  <%if (typeof(todays.weatherData)=='string'){%>
+				  <a href="#"><%= todays.weatherData%>
+				  </a>
+				  <%}else{%>
+				  <a href="#"><%= todays.weatherData.results[0].currentCity%>:
+					  <%= todays.weatherData.results[0].weather_data[0].date%><br>
+                      <%= todays.weatherData.results[0].weather_data[0].weather%>
+                      (<%= todays.weatherData.results[0].weather_data[0].temperature%>)
+				  </a>
+				  <%}%>
+			  </div><!--close button_small-->
+		  </div><!--close content_container-->
+		  <div class="content_container">
+			  <p class="button_small"><%= todays.news%></p>
+			  <div class="button">
+                  <%if (typeof(todays.newsData)=='string'){%>
+				  <a href="#"><%= todays.newsData%>
+				  </a>
+                  <%}else{%>
+					  <% for(var i=0;i<todays.newsData.length;i++){%>
+					  <% var item = todays.newsData[i]%>
+					  <a href="<%=item.href%>" target="view_window">
+						  <%= item.title%>
+					  </a></br>
+					  <%}%>
+                  <%}%>
+			  </div><!--close button_small-->
+		  </div><!--close content_container-->
+		  <div class="content_container">
+			  <p class="button_small"><%= todays.limitCarNo%></p>
+			  <div >
+				  <a href="#"><%= todays.limitTailNum%></a>
+			  </div><!--close button_small-->
+		  </div><!--close content_container-->
+		  <div class="content_container">
+			  <p class="button_small"><%= todays.baiduHot%></p>
+			  <div class="button">
+                  <%if (typeof(todays.baiduHots)=='string'){%>
+				  <a href="#"><%= todays.baiduHots%>
+				  </a>
+                  <%}else{%>
+					  <% for(var i=0;i<todays.baiduHots.length;i++){%>
+					  <% var item = todays.baiduHots[i]%>
+					  <a href="<%=item.href%>" target="view_window">
+						  <%= item.text%>
+					  </a></br>
+					  <%}%>
+                  <%}%>
+			  </div><!--close button_small-->
+		  </div><!--close content_container-->
+		  <div class="content_container">
+			  <p class="button_small"><%= todays.movie%></p>
+			  <div class="button">
+				  【名字】排片场次/占比（总票房）</br>
+                  <%if (typeof(todays.movies)=='string'){%>
+				  <a href="#"><%= todays.movies%>
+				  </a>
+                  <%}else{%>
+                  <% for(var i=0;i<5;i++){%>
+                  <% var item = todays.movies[i]%>
+				  <a>
+                      【<%= item.name%>】<%=item.totalPercent%>（<%=item.total%>）
+				  </a></br>
+                  <%}%>
+                  <%}%>
+			  </div><!--close button_small-->
+		  </div><!--close content_container-->
+      </div><!--close content-->
+
+		<div id="content_blue">
+	    <div class="content_blue_container_box">
+		  <h4>Face++</h4>
+	      <p> Face AI </p>
+		  <div class="readmore">
+		    <a href="/v1/api/facePlusPlus" target="view_window"><%= content.bodycontent.btnTxt%></a>
+		  </div><!--close readmore-->
+	    </div><!--close content_blue_container_box-->
+        <div class="content_blue_container_box">
+         <h4>Face BAIDU AI</h4>
+	      <p>Face ai from baidu</p>
+	      <div class="readmore">
+			  <a href="/v1/api/faceBaidu" target="view_window"><%= content.bodycontent.btnTxt%></a>
+		  </div><!--close readmore-->
+	    </div><!--close content_blue_container_box-->
+        <div class="content_blue_container_boxl">
+		  <h4><%= content.contentbule.projectUpdate.title%></h4>
+	      <p><%= content.contentbule.projectUpdate.desc%></p>
+	      <div class="readmore">
+		    <a href="#"><%= content.bodycontent.btnTxt%></a>
+		  </div><!--close readmore-->	  
+	    </div><!--close content_blue_container_box1-->      
+	    <br style="clear:both"/>
+      </div><!--close content_blue--> 	
+	</div><!--close site_content--> 
+

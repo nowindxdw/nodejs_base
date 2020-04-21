@@ -1,0 +1,928 @@
+---
+swagger: "2.0"
+info:
+  description: "Interface of Recruit system"
+  version: "0.1.1"
+  title: "Recruit system"
+  contact:
+    name: "dawei"
+    email: "nowindxdw@126.com"
+basePath: "/v1/api"
+schemes:
+- "http"
+- "https"
+consumes:
+- "application/json"
+- "multipart/form-data"
+produces:
+- "application/json"
+#登录接口
+paths:
+  /index:
+    get:
+      tags:
+      - "index"
+      summary: "主页接口"
+      description: "展示默认主页接口"
+      operationId: "getIndex"
+      parameters:
+        - $ref: "#/parameters/pageLang"
+        - $ref: "#/parameters/pageStyle"
+      responses:
+        200:
+         $ref: "#/responses/Standard200Response"
+        400:
+         $ref: "#/responses/Standard400ErrorResponse"
+        500:
+         $ref: "#/responses/Standard500ErrorResponse"
+  /index/skills:
+    get:
+      tags:
+      - "index"
+      summary: "主页技艺接口"
+      description: "展示主页技艺页面"
+      operationId: "getSkill"
+      parameters:
+        - $ref: "#/parameters/pageLang"
+        - $ref: "#/parameters/pageStyle"
+      responses:
+        200:
+         $ref: "#/responses/Standard200Response"
+        400:
+         $ref: "#/responses/Standard400ErrorResponse"
+        500:
+         $ref: "#/responses/Standard500ErrorResponse"
+  /index/life:
+    get:
+      tags:
+      - "index"
+      summary: "主页生活接口"
+      description: "展示主页生活页面"
+      operationId: "getLife"
+      parameters:
+        - $ref: "#/parameters/pageLang"
+        - $ref: "#/parameters/pageStyle"
+      responses:
+        200:
+         $ref: "#/responses/Standard200Response"
+        400:
+         $ref: "#/responses/Standard400ErrorResponse"
+        500:
+         $ref: "#/responses/Standard500ErrorResponse"
+  /index/contact:
+    get:
+      tags:
+      - "index"
+      summary: "主页联系方式接口"
+      description: "展示主页联系方式页面"
+      operationId: "getContact"
+      parameters:
+        - $ref: "#/parameters/pageLang"
+        - $ref: "#/parameters/pageStyle"
+      responses:
+        200:
+         $ref: "#/responses/Standard200Response"
+        400:
+         $ref: "#/responses/Standard400ErrorResponse"
+        500:
+         $ref: "#/responses/Standard500ErrorResponse"
+  /login:
+    get:
+      tags:
+      - "auth"
+      summary: "主页登录接口"
+      description: "根据用户名&密码去验证用户,确认密码与用户名无误后,将会返回用户的jwt信息"
+      operationId: "getLogin"
+      parameters:
+        - $ref: "#/parameters/pageLang"
+        - $ref: "#/parameters/pageStyle"
+      responses:
+        200:
+         $ref: "#/responses/Standard200Response"
+        400:
+         $ref: "#/responses/Standard400ErrorResponse"
+        500:
+         $ref: "#/responses/Standard500ErrorResponse"
+  /auth:
+    post:
+      tags:
+      - "auth"
+      summary: "登录认证接口"
+      description: "根据用户名&密码去验证用户,确认密码与用户名无误后,将会返回用户的jwt信息"
+      operationId: "postAuth"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "登录验证信息"
+        required: true
+        schema:
+          $ref: "#/definitions/AuthInfo"
+      responses:
+        200:
+         $ref: "#/responses/postAuth"
+        400:
+         $ref: "#/responses/Standard400ErrorResponse"
+        500:
+         $ref: "#/responses/Standard500ErrorResponse"
+  /auth/{operatorUsername}:
+    delete:
+      tags:
+      - "auth"
+      summary: "退出登录接口"
+      description: "登出将删除服务器端的session信息，用户的token也将失效"
+      operationId: "deleteAuth"
+      parameters:
+      - name: "operatorUsername"
+        in: "path"
+        description: "退出登录参数"
+        required: true
+        type: "string"
+      responses:
+        200:
+         $ref: "#/responses/Standard200Response"
+        400:
+         $ref: "#/responses/Standard400ErrorResponse"
+        500:
+         $ref: "#/responses/Standard500ErrorResponse"
+#人脸识别应用
+  /facePlusPlus:
+    get:
+      tags:
+      - "face"
+      summary: "获取人脸识别页面"
+      description: "展示人脸识别页面"
+      operationId: "getFacePlusPlus"
+      responses:
+        200:
+         $ref: "#/responses/Standard200Response"
+        400:
+         $ref: "#/responses/Standard400ErrorResponse"
+        500:
+         $ref: "#/responses/Standard500ErrorResponse"
+    post:
+      tags:
+      - "face"
+      summary: "人脸识别数据提交"
+      description: "提交人脸识别数据"
+      operationId: "postFacePlusPlus"
+      parameters:
+        - $ref: "#/parameters/faceinfo"
+      responses:
+        200:
+         $ref: "#/responses/Standard200Response"
+        400:
+         $ref: "#/responses/Standard400ErrorResponse"
+        500:
+         $ref: "#/responses/Standard500ErrorResponse"
+  /faceBaidu:
+    get:
+      tags:
+      - "face"
+      summary: "获取baidu人脸识别页面"
+      description: "展示baidu人脸识别页面"
+      operationId: "getFaceBaidu"
+      responses:
+        200:
+         $ref: "#/responses/Standard200Response"
+        400:
+         $ref: "#/responses/Standard400ErrorResponse"
+        500:
+         $ref: "#/responses/Standard500ErrorResponse"
+    post:
+      tags:
+      - "face"
+      summary: "baidu人脸识别数据提交"
+      description: "提交baidu人脸识别数据"
+      operationId: "postFaceBaidu"
+      parameters:
+        - $ref: "#/parameters/faceinfo"
+      responses:
+        200:
+         $ref: "#/responses/Standard200Response"
+        400:
+         $ref: "#/responses/Standard400ErrorResponse"
+        500:
+         $ref: "#/responses/Standard500ErrorResponse"
+#业务接口
+  /recruitlist:
+    post:
+      tags:
+      - "recruit"
+      summary: "职位列表"
+      description: "根据查询条件获取所有的职位列表"
+      operationId: "pullRecruitList"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "查询条件"
+        required: true
+        schema:
+          $ref: "#/definitions/Filter"
+      - $ref: "#/parameters/pageLang"
+      - $ref: "#/parameters/pageStyle"
+      responses:
+        200:
+         $ref: "#/responses/RecruitList"
+        400:
+         $ref: "#/responses/Standard400ErrorResponse"
+        500:
+         $ref: "#/responses/Standard500ErrorResponse"
+  /sendmail:
+    post:
+      tags:
+      - "contact"
+      summary: "发送邮件"
+      description: "发送邮件信息"
+      operationId: "sendContactMail"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "发送信息"
+        required: true
+        schema:
+          $ref: "#/definitions/Mailbody"
+      responses:
+        200:
+         $ref: "#/responses/Standard200Response"
+        400:
+         $ref: "#/responses/Standard400ErrorResponse"
+        500:
+         $ref: "#/responses/Standard500ErrorResponse"
+  /dashboard:
+    get:
+      tags:
+      - "dash"
+      summary: "后台默认页面渲染"
+      description: "获取后台首页"
+      operationId: "getDashboard"
+      responses:
+        200:
+         $ref: "#/responses/Standard200Response"
+        400:
+         $ref: "#/responses/Standard400ErrorResponse"
+        500:
+         $ref: "#/responses/Standard500ErrorResponse"
+  /menu/list:
+    get:
+      tags:
+      - "menu"
+      summary: "后台菜单列表"
+      description: "获取菜单配置"
+      operationId: "getMenuList"
+      responses:
+        200:
+         $ref: "#/responses/Standard200Response"
+        400:
+         $ref: "#/responses/Standard400ErrorResponse"
+        500:
+         $ref: "#/responses/Standard500ErrorResponse"
+  /menu/detail:
+    get:
+      tags:
+      - "menu"
+      summary: "获取后台菜单详情"
+      description: "获取菜单详情"
+      operationId: "getMenudetail"
+      parameters:
+      - in: "query"
+        name: "menuId"
+        description: "菜单id"
+        required: true
+        type: "string"
+      responses:
+        200:
+         $ref: "#/responses/Standard200Response"
+        400:
+         $ref: "#/responses/Standard400ErrorResponse"
+        500:
+         $ref: "#/responses/Standard500ErrorResponse"
+    patch:
+      tags:
+      - "menu"
+      summary: "修改后台菜单详情"
+      description: "修改菜单详情"
+      operationId: "editMenudetail"
+      parameters:
+      - in: "query"
+        name: "menuId"
+        description: "菜单id"
+        required: true
+        type: "string"
+      responses:
+        200:
+         $ref: "#/responses/Standard200Response"
+        400:
+         $ref: "#/responses/Standard400ErrorResponse"
+        500:
+         $ref: "#/responses/Standard500ErrorResponse"
+    delete:
+      tags:
+      - "menu"
+      summary: "删除后台菜单"
+      description: "删除菜单详情"
+      operationId: "delMenudetail"
+      parameters:
+      - in: "query"
+        name: "menuId"
+        description: "菜单id"
+        required: true
+        type: "string"
+      responses:
+        200:
+         $ref: "#/responses/Standard200Response"
+        400:
+         $ref: "#/responses/Standard400ErrorResponse"
+        500:
+         $ref: "#/responses/Standard500ErrorResponse"
+    post:
+      tags:
+      - "menu"
+      summary: "新增后台菜单"
+      description: "新建菜单详情"
+      operationId: "postMenudetail"
+      responses:
+        200:
+         $ref: "#/responses/Standard200Response"
+        400:
+         $ref: "#/responses/Standard400ErrorResponse"
+        500:
+         $ref: "#/responses/Standard500ErrorResponse"
+  /todo/list:
+    get:
+      tags:
+      - "todo"
+      summary: "待办列表"
+      description: "获取待办列置"
+      operationId: "getTodoList"
+      responses:
+        200:
+         $ref: "#/responses/Standard200Response"
+        400:
+         $ref: "#/responses/Standard400ErrorResponse"
+        500:
+         $ref: "#/responses/Standard500ErrorResponse"
+  /todo/detail:
+    get:
+      tags:
+      - "todo"
+      summary: "获取待办事项"
+      description: "获取待办事项"
+      operationId: "getTododetail"
+      parameters:
+      - in: "query"
+        name: "todoId"
+        description: "待办事项id"
+        required: true
+        type: "string"
+      responses:
+        200:
+         $ref: "#/responses/Standard200Response"
+        400:
+         $ref: "#/responses/Standard400ErrorResponse"
+        500:
+         $ref: "#/responses/Standard500ErrorResponse"
+    patch:
+      tags:
+      - "todo"
+      summary: "修改待办事项"
+      description: "修改待办事项"
+      operationId: "editTododetail"
+      parameters:
+      - in: "query"
+        name: "todoId"
+        description: "待办事项id"
+        required: true
+        type: "string"
+      responses:
+        200:
+         $ref: "#/responses/Standard200Response"
+        400:
+         $ref: "#/responses/Standard400ErrorResponse"
+        500:
+         $ref: "#/responses/Standard500ErrorResponse"
+    delete:
+      tags:
+      - "todo"
+      summary: "删除待办事项"
+      description: "删除待办事项"
+      operationId: "delTododetail"
+      parameters:
+      - in: "query"
+        name: "menuId"
+        description: "待办事项id"
+        required: true
+        type: "string"
+      responses:
+        200:
+         $ref: "#/responses/Standard200Response"
+        400:
+         $ref: "#/responses/Standard400ErrorResponse"
+        500:
+         $ref: "#/responses/Standard500ErrorResponse"
+    post:
+      tags:
+      - "todo"
+      summary: "新增待办事项"
+      description: "新建待办事项"
+      operationId: "postTododetail"
+      responses:
+        200:
+         $ref: "#/responses/Standard200Response"
+        400:
+         $ref: "#/responses/Standard400ErrorResponse"
+        500:
+         $ref: "#/responses/Standard500ErrorResponse"
+  /msg/list:
+    get:
+      tags:
+      - "msg"
+      summary: "后台消息列表"
+      description: "获取消息列表"
+      operationId: "getMsgList"
+      responses:
+        200:
+         $ref: "#/responses/Standard200Response"
+        400:
+         $ref: "#/responses/Standard400ErrorResponse"
+        500:
+         $ref: "#/responses/Standard500ErrorResponse"
+  /msg/detail:
+    get:
+      tags:
+      - "msg"
+      summary: "获取后台消息详情"
+      description: "获取消息详情"
+      operationId: "getMsgdetail"
+      parameters:
+      - in: "query"
+        name: "msgId"
+        description: "消息id"
+        required: true
+        type: "string"
+      responses:
+        200:
+         $ref: "#/responses/Standard200Response"
+        400:
+         $ref: "#/responses/Standard400ErrorResponse"
+        500:
+         $ref: "#/responses/Standard500ErrorResponse"
+    patch:
+      tags:
+      - "msg"
+      summary: "修改后台消息详情"
+      description: "修改消息详情"
+      operationId: "editMsgdetail"
+      parameters:
+      - in: "query"
+        name: "msgId"
+        description: "消息id"
+        required: true
+        type: "string"
+      responses:
+        200:
+         $ref: "#/responses/Standard200Response"
+        400:
+         $ref: "#/responses/Standard400ErrorResponse"
+        500:
+         $ref: "#/responses/Standard500ErrorResponse"
+    delete:
+      tags:
+      - "msg"
+      summary: "删除后台消息详情"
+      description: "删除消息详情"
+      operationId: "delMsgdetail"
+      parameters:
+      - in: "query"
+        name: "msgId"
+        description: "消息id"
+        required: true
+        type: "string"
+      responses:
+        200:
+         $ref: "#/responses/Standard200Response"
+        400:
+         $ref: "#/responses/Standard400ErrorResponse"
+        500:
+         $ref: "#/responses/Standard500ErrorResponse"
+    post:
+      tags:
+      - "msg"
+      summary: "新增后台消息详情"
+      description: "新建消息详情"
+      operationId: "postMsgdetail"
+      responses:
+        200:
+         $ref: "#/responses/Standard200Response"
+        400:
+         $ref: "#/responses/Standard400ErrorResponse"
+        500:
+         $ref: "#/responses/Standard500ErrorResponse"
+  /log/list:
+    get:
+      tags:
+      - "log"
+      summary: "后台日志列表"
+      description: "获取日志列表"
+      operationId: "getLogList"
+      responses:
+        200:
+         $ref: "#/responses/Standard200Response"
+        400:
+         $ref: "#/responses/Standard400ErrorResponse"
+        500:
+         $ref: "#/responses/Standard500ErrorResponse"
+  /log/detail:
+    get:
+      tags:
+      - "log"
+      summary: "获取后台日志详情"
+      description: "获取日志详情"
+      operationId: "getLogdetail"
+      parameters:
+      - in: "query"
+        name: "logId"
+        description: "日志id"
+        required: true
+        type: "string"
+      responses:
+        200:
+         $ref: "#/responses/Standard200Response"
+        400:
+         $ref: "#/responses/Standard400ErrorResponse"
+        500:
+         $ref: "#/responses/Standard500ErrorResponse"
+
+  /fileExport:
+    post:
+      tags:
+      - "download"
+      summary: "信息导出"
+      description: "根据id列表导出指定信息"
+      operationId: "exportFile"
+      produces:
+      - "application/vnd.ms-excel"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "出库单的id列表"
+        required: true
+        schema:
+          $ref: "#/definitions/ExportList"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/inline_response_200"
+        400:
+         $ref: "#/responses/Standard400ErrorResponse"
+        500:
+         $ref: "#/responses/Standard500ErrorResponse"
+
+securityDefinitions:
+  token:
+    type: "apiKey"
+    name: "token"
+    in: "query"
+
+definitions:
+  FaceInfo:
+    type: "object"
+    properties:
+      image_base64:
+        type: "string"
+        description: "图片base64编码"
+      return_attributes:
+        type: "string"
+        description: "返回参数"
+  lang:
+    type: "string"
+    description: "语言"
+  style:
+    type: "string"
+    description: "风格"
+  closed:
+    type: "boolean"
+    description: "true 已关闭  false 活动中"
+  deleted:
+    type: "boolean"
+    description: "true 已删除  false 未删除"
+  visible:
+    type: "boolean"
+    description: "true 可见  false 隐藏"
+  enabled:
+    type: "boolean"
+    description: "true 启用中  false 禁用中"
+
+  recruitSfId:
+    type: "string"
+    description: "唯一id snowflake ID"
+  enterpriseName:
+    type: "string"
+    description: "企业名称全名"
+  startTime:
+    type: "string"
+    description: "开始时间"
+  jobTitle:
+    type: "string"
+    description: "职位名"
+  salaryMin:
+    type: "string"
+    description: "企业薪资下限"
+  salaryMax:
+    type: "string"
+    description: "企业薪资下限"
+  salary:
+    type: "string"
+    description: "企业薪资"
+  location:
+    type: "string"
+    description: "工作地点"
+  jobDesc:
+    type: "string"
+    description: "职位描述"
+  requireExp:
+    type: "string"
+    description: "经验要求"
+  languageType:
+    type: "string"
+    description: "语言类型"
+    enum:
+    - "NODEJS"
+    - "JAVA"
+    - "PYTHON"
+    - "OTHER"
+    default: "OTHER"
+
+#操作员相关字段
+  operatorSfId:
+    type: "string"
+    description: "操作员snowflake ID"
+  operatorAdmin:
+    type: "boolean"
+    description: "true 是管理员  false 不是管理员"
+  operatorRoles:
+    type: "string"
+    description: "平台操作员权限控制字符串"
+  operatorUsername:
+    type: "string"
+    description: "平台操作员登录名"
+  operatorPassword:
+    type: "string"
+    description: "平台操作员登录密码"
+  mobile:
+    type: "string"
+    description: "手机号码"
+  email:
+    type: "string"
+    format: "email"
+    description: "email邮箱地址"
+
+#排序字段
+  OrderBy:
+    type: "array"
+    description: "排序条件列表"
+    items:
+      $ref: "#/definitions/OrderByInner"
+  OrderByInner:
+    properties:
+      name:
+        type: "string"
+        description: "字段名"
+      order:
+        type: "string"
+        description: "顺序"
+        enum:
+        - "ASC"
+        - "DESC"
+        default: "ASC"
+  ExportList:
+    type: "object"
+    properties:
+      exportIds:
+        type: "string"
+    description: "导出id列表"
+#筛选分页字段
+  Filter:
+    required:
+    - "page"
+    - "pageSize"
+    properties:
+      page:
+        type: "integer"
+        format: "int32"
+        description: "页码，默认1"
+      pageSize:
+        type: "integer"
+        format: "int32"
+        description: "每页数量，默认10"
+      search:
+        type: "string"
+        description: "搜索模糊匹配关键字"
+  page:
+    type: "integer"
+    format: "int32"
+    description: "页码，默认1"
+  pageSize:
+    type: "integer"
+    format: "int32"
+    description: "每页数量，默认10"
+  search:
+    type: "string"
+    description: "搜索模糊匹配关键字"
+  Mailbody:
+    type: "object"
+    required:
+    - "name"
+    - "message"
+    properties:
+      name:
+        type: "string"
+        description: "名字"
+      email:
+        type: "string"
+        description: "邮箱地址"
+      message:
+        type: "string"
+        description: "信息"
+    description: "邮件内容"
+  AuthInfo:
+    type: "object"
+    required:
+    - "operatorPassword"
+    - "operatorUsername"
+    properties:
+      operatorUsername:
+        type: "string"
+        description: "平台操作员登录名"
+        maxLength: 128
+      operatorPassword:
+        type: "string"
+        description: "平台操作员登录密码"
+        maxLength: 255
+    description: "登录认证信息"
+  UserMiniInfo:
+    type: "object"
+    properties:
+      operatorSfId:
+        type: "string"
+        description: "操作员snowflake ID"
+        maxLength: 128
+      operatorUsername:
+        type: "string"
+        description: "平台操作员登录名"
+        maxLength: 128
+      token:
+        type: "string"
+    description: "用户信息"
+
+  RecruitList:
+    type: "array"
+    description: "出库单列表"
+    items:
+      $ref: "#/definitions/RecruitInfo"
+  RecruitInfo:
+    type: "object"
+    properties:
+      recruitSfId:
+        $ref: "#/definitions/recruitSfId"
+      enterpriseName:
+        $ref: "#/definitions/enterpriseName"
+      startTime:
+        $ref: "#/definitions/startTime"
+      jobTitle:
+        $ref: "#/definitions/jobTitle"
+      salaryMin:
+        $ref: "#/definitions/salaryMin"
+      salaryMax:
+        $ref: "#/definitions/salaryMax"
+      salary:
+        $ref: "#/definitions/salary"
+      location:
+        $ref: "#/definitions/location"
+      jobDesc:
+        $ref: "#/definitions/jobDesc"
+      requireExp:
+        $ref: "#/definitions/requireExp"
+      languageType:
+        $ref: "#/definitions/languageType"
+  Error:
+    properties:
+      code:
+        type: "string"
+      message:
+        type: "string"
+  inline_response_200:
+    properties:
+      urls:
+        type: "string"
+#参数定义
+parameters:
+  pageLang:
+    name: "pageLang"
+    in: "query"
+    description: "页面语言"
+    required: false
+    type: "string"
+  pageStyle:
+    name: "pageStyle"
+    in: "query"
+    description: "页面风格"
+    required: false
+    type: "string"
+  operatorUsername:
+    name: "operatorUsername"
+    in: "path"
+    description: "退出登录参数"
+    required: true
+    type: "string"
+  operatorId:
+    name: "operatorId"
+    in: "path"
+    description: "管理员ID"
+    required: true
+    type: "string"
+  startTime:
+    name: "startTime"
+    in: "query"
+    description: "起始日期"
+    required: false
+    type: "string"
+  endTime:
+    name: "endTime"
+    in: "query"
+    description: "截止日期"
+    required: false
+    type: "string"
+  page:
+    name: "page"
+    in: "query"
+    description: "页码"
+    required: false
+    type: "integer"
+    default: 1
+    format: "int32"
+  pageSize:
+    name: "pageSize"
+    in: "query"
+    description: "每页数量"
+    required: false
+    type: "integer"
+    default: 10
+    format: "int32"
+  userinfo:
+    in: "body"
+    name: "body"
+    description: "登录验证信息"
+    required: true
+    schema:
+      $ref: "#/definitions/AuthInfo"
+  faceinfo:
+    in: "body"
+    name: "body"
+    description: "登录验证信息"
+    required: true
+    schema:
+      $ref: "#/definitions/FaceInfo"
+
+#返回信息定义
+responses:
+  Standard500ErrorResponse:
+    description: "An unexpected error occured."
+    schema:
+      $ref: "#/definitions/Error"
+  Standard204Response:
+    description: "empty content."
+  Standard400ErrorResponse:
+    description: "An unexpected client error occured."
+  Standard200Response:
+    description: "Success"
+
+  postAuth:
+    description: "Success"
+    schema:
+      $ref: "#/definitions/UserMiniInfo"
+    examples:
+      application/json:
+        operatorSfId: "1234567894554"
+        operatorUsername: "dawei"
+        token: "asdfasdfasdflasdfawqiegfasd.asdfjasdgasncxuawetrfnh"
+
+  RecruitList:
+    description: "Success"
+    schema:
+      $ref: "#/definitions/RecruitList"
+    examples:
+      application/json:
+      - recruitSfId: "asdfgh123456"
+        enterpriseName: "jklmn7890"
+        startTime: "2016-12-12"
+        jobTitle: "iop09876"
+        salaryMin: "5000"
+        salaryMax: "10000"
+        salary: ""
+        location: "cd"
+        jobDesc: "blabla"
+        requireExp: "above 3 years"
+        languageType: "OTHER"
+
+

@@ -1,0 +1,1499 @@
+---
+swagger: "2.0"
+info:
+  description: "Interface of Recruit system"
+  version: "0.1.1"
+  title: "Recruit system"
+  contact:
+    name: "dawei"
+    email: "nowindxdw@126.com"
+basePath: "/v1/api"
+schemes:
+- "http"
+- "https"
+consumes:
+- "application/json"
+- "multipart/form-data"
+produces:
+- "application/json"
+paths:
+  /index:
+    get:
+      tags:
+      - "index"
+      summary: "主页接口"
+      description: "展示默认主页接口"
+      operationId: "getIndex"
+      consumes:
+      - "application/json"
+      - "multipart/form-data"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "pageLang"
+        in: "query"
+        description: "页面语言"
+        required: false
+        type: "string"
+      - name: "pageStyle"
+        in: "query"
+        description: "页面风格"
+        required: false
+        type: "string"
+      responses:
+        200:
+          description: "Success"
+        400:
+          description: "An unexpected client error occured."
+        500:
+          description: "An unexpected error occured."
+          schema:
+            $ref: "#/definitions/inline_response_500"
+      x-swagger-router-controller: "Index"
+  /index/skills:
+    get:
+      tags:
+      - "index"
+      summary: "主页技艺接口"
+      description: "展示主页技艺页面"
+      operationId: "getSkill"
+      consumes:
+      - "application/json"
+      - "multipart/form-data"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "pageLang"
+        in: "query"
+        description: "页面语言"
+        required: false
+        type: "string"
+      - name: "pageStyle"
+        in: "query"
+        description: "页面风格"
+        required: false
+        type: "string"
+      responses:
+        200:
+          description: "Success"
+        400:
+          description: "An unexpected client error occured."
+        500:
+          description: "An unexpected error occured."
+          schema:
+            $ref: "#/definitions/inline_response_500"
+      x-swagger-router-controller: "Index"
+  /index/life:
+    get:
+      tags:
+      - "index"
+      summary: "主页生活接口"
+      description: "展示主页生活页面"
+      operationId: "getLife"
+      consumes:
+      - "application/json"
+      - "multipart/form-data"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "pageLang"
+        in: "query"
+        description: "页面语言"
+        required: false
+        type: "string"
+      - name: "pageStyle"
+        in: "query"
+        description: "页面风格"
+        required: false
+        type: "string"
+      responses:
+        200:
+          description: "Success"
+        400:
+          description: "An unexpected client error occured."
+        500:
+          description: "An unexpected error occured."
+          schema:
+            $ref: "#/definitions/inline_response_500"
+      x-swagger-router-controller: "Index"
+  /index/contact:
+    get:
+      tags:
+      - "index"
+      summary: "主页联系方式接口"
+      description: "展示主页联系方式页面"
+      operationId: "getContact"
+      consumes:
+      - "application/json"
+      - "multipart/form-data"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "pageLang"
+        in: "query"
+        description: "页面语言"
+        required: false
+        type: "string"
+      - name: "pageStyle"
+        in: "query"
+        description: "页面风格"
+        required: false
+        type: "string"
+      responses:
+        200:
+          description: "Success"
+        400:
+          description: "An unexpected client error occured."
+        500:
+          description: "An unexpected error occured."
+          schema:
+            $ref: "#/definitions/inline_response_500"
+      x-swagger-router-controller: "Index"
+  /login:
+    get:
+      tags:
+      - "auth"
+      summary: "主页登录接口"
+      description: "根据用户名&密码去验证用户,确认密码与用户名无误后,将会返回用户的jwt信息"
+      operationId: "getLogin"
+      consumes:
+      - "application/json"
+      - "multipart/form-data"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "pageLang"
+        in: "query"
+        description: "页面语言"
+        required: false
+        type: "string"
+      - name: "pageStyle"
+        in: "query"
+        description: "页面风格"
+        required: false
+        type: "string"
+      responses:
+        200:
+          description: "Success"
+        400:
+          description: "An unexpected client error occured."
+        500:
+          description: "An unexpected error occured."
+          schema:
+            $ref: "#/definitions/inline_response_500"
+      x-swagger-router-controller: "Auth"
+  /auth:
+    post:
+      tags:
+      - "auth"
+      summary: "登录认证接口"
+      description: "根据用户名&密码去验证用户,确认密码与用户名无误后,将会返回用户的jwt信息"
+      operationId: "postAuth"
+      consumes:
+      - "application/json"
+      - "multipart/form-data"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "登录验证信息"
+        required: true
+        schema:
+          $ref: "#/definitions/body"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/inline_response_200_1"
+          examples:
+            application/json:
+              operatorSfId: "1234567894554"
+              operatorUsername: "dawei"
+              token: "asdfasdfasdflasdfawqiegfasd.asdfjasdgasncxuawetrfnh"
+        400:
+          description: "An unexpected client error occured."
+        500:
+          description: "An unexpected error occured."
+          schema:
+            $ref: "#/definitions/inline_response_500"
+      x-swagger-router-controller: "Auth"
+  /auth/{operatorUsername}:
+    delete:
+      tags:
+      - "auth"
+      summary: "退出登录接口"
+      description: "登出将删除服务器端的session信息，用户的token也将失效"
+      operationId: "deleteAuth"
+      consumes:
+      - "application/json"
+      - "multipart/form-data"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "operatorUsername"
+        in: "path"
+        description: "退出登录参数"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Success"
+        400:
+          description: "An unexpected client error occured."
+        500:
+          description: "An unexpected error occured."
+          schema:
+            $ref: "#/definitions/inline_response_500"
+      x-swagger-router-controller: "Auth"
+  /facePlusPlus:
+    get:
+      tags:
+      - "face"
+      summary: "获取人脸识别页面"
+      description: "展示人脸识别页面"
+      operationId: "getFacePlusPlus"
+      consumes:
+      - "application/json"
+      - "multipart/form-data"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "Success"
+        400:
+          description: "An unexpected client error occured."
+        500:
+          description: "An unexpected error occured."
+          schema:
+            $ref: "#/definitions/inline_response_500"
+      x-swagger-router-controller: "Face"
+    post:
+      tags:
+      - "face"
+      summary: "人脸识别数据提交"
+      description: "提交人脸识别数据"
+      operationId: "postFacePlusPlus"
+      consumes:
+      - "application/json"
+      - "multipart/form-data"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "登录验证信息"
+        required: true
+        schema:
+          $ref: "#/definitions/body_1"
+      responses:
+        200:
+          description: "Success"
+        400:
+          description: "An unexpected client error occured."
+        500:
+          description: "An unexpected error occured."
+          schema:
+            $ref: "#/definitions/inline_response_500"
+      x-swagger-router-controller: "Face"
+  /faceBaidu:
+    get:
+      tags:
+      - "face"
+      summary: "获取baidu人脸识别页面"
+      description: "展示baidu人脸识别页面"
+      operationId: "getFaceBaidu"
+      consumes:
+      - "application/json"
+      - "multipart/form-data"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "Success"
+        400:
+          description: "An unexpected client error occured."
+        500:
+          description: "An unexpected error occured."
+          schema:
+            $ref: "#/definitions/inline_response_500"
+      x-swagger-router-controller: "Face"
+    post:
+      tags:
+      - "face"
+      summary: "baidu人脸识别数据提交"
+      description: "提交baidu人脸识别数据"
+      operationId: "postFaceBaidu"
+      consumes:
+      - "application/json"
+      - "multipart/form-data"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "登录验证信息"
+        required: true
+        schema:
+          $ref: "#/definitions/body_2"
+      responses:
+        200:
+          description: "Success"
+        400:
+          description: "An unexpected client error occured."
+        500:
+          description: "An unexpected error occured."
+          schema:
+            $ref: "#/definitions/inline_response_500"
+      x-swagger-router-controller: "Face"
+  /recruitlist:
+    post:
+      tags:
+      - "recruit"
+      summary: "职位列表"
+      description: "根据查询条件获取所有的职位列表"
+      operationId: "pullRecruitList"
+      consumes:
+      - "application/json"
+      - "multipart/form-data"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "查询条件"
+        required: true
+        schema:
+          $ref: "#/definitions/body_3"
+      - name: "pageLang"
+        in: "query"
+        description: "页面语言"
+        required: false
+        type: "string"
+      - name: "pageStyle"
+        in: "query"
+        description: "页面风格"
+        required: false
+        type: "string"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            type: "array"
+            description: "出库单列表"
+            items:
+              $ref: "#/definitions/inline_response_200_2"
+          examples:
+            application/json:
+            - recruitSfId: "asdfgh123456"
+              enterpriseName: "jklmn7890"
+              startTime: "2016-12-12"
+              jobTitle: "iop09876"
+              salaryMin: "5000"
+              salaryMax: "10000"
+              salary: ""
+              location: "cd"
+              jobDesc: "blabla"
+              requireExp: "above 3 years"
+              languageType: "OTHER"
+        400:
+          description: "An unexpected client error occured."
+        500:
+          description: "An unexpected error occured."
+          schema:
+            $ref: "#/definitions/inline_response_500"
+      x-swagger-router-controller: "Recruit"
+  /sendmail:
+    post:
+      tags:
+      - "contact"
+      summary: "发送邮件"
+      description: "发送邮件信息"
+      operationId: "sendContactMail"
+      consumes:
+      - "application/json"
+      - "multipart/form-data"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "发送信息"
+        required: true
+        schema:
+          $ref: "#/definitions/body_4"
+      responses:
+        200:
+          description: "Success"
+        400:
+          description: "An unexpected client error occured."
+        500:
+          description: "An unexpected error occured."
+          schema:
+            $ref: "#/definitions/inline_response_500"
+      x-swagger-router-controller: "Contact"
+  /dashboard:
+    get:
+      tags:
+      - "dash"
+      summary: "后台默认页面渲染"
+      description: "获取后台首页"
+      operationId: "getDashboard"
+      consumes:
+      - "application/json"
+      - "multipart/form-data"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "Success"
+        400:
+          description: "An unexpected client error occured."
+        500:
+          description: "An unexpected error occured."
+          schema:
+            $ref: "#/definitions/inline_response_500"
+      x-swagger-router-controller: "Dash"
+  /menu/list:
+    get:
+      tags:
+      - "menu"
+      summary: "后台菜单列表"
+      description: "获取菜单配置"
+      operationId: "getMenuList"
+      consumes:
+      - "application/json"
+      - "multipart/form-data"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "Success"
+        400:
+          description: "An unexpected client error occured."
+        500:
+          description: "An unexpected error occured."
+          schema:
+            $ref: "#/definitions/inline_response_500"
+      x-swagger-router-controller: "Menu"
+  /menu/detail:
+    get:
+      tags:
+      - "menu"
+      summary: "获取后台菜单详情"
+      description: "获取菜单详情"
+      operationId: "getMenudetail"
+      consumes:
+      - "application/json"
+      - "multipart/form-data"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "menuId"
+        in: "query"
+        description: "菜单id"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Success"
+        400:
+          description: "An unexpected client error occured."
+        500:
+          description: "An unexpected error occured."
+          schema:
+            $ref: "#/definitions/inline_response_500"
+      x-swagger-router-controller: "Menu"
+    post:
+      tags:
+      - "menu"
+      summary: "新增后台菜单"
+      description: "新建菜单详情"
+      operationId: "postMenudetail"
+      consumes:
+      - "application/json"
+      - "multipart/form-data"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "Success"
+        400:
+          description: "An unexpected client error occured."
+        500:
+          description: "An unexpected error occured."
+          schema:
+            $ref: "#/definitions/inline_response_500"
+      x-swagger-router-controller: "Menu"
+    delete:
+      tags:
+      - "menu"
+      summary: "删除后台菜单"
+      description: "删除菜单详情"
+      operationId: "delMenudetail"
+      consumes:
+      - "application/json"
+      - "multipart/form-data"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "menuId"
+        in: "query"
+        description: "菜单id"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Success"
+        400:
+          description: "An unexpected client error occured."
+        500:
+          description: "An unexpected error occured."
+          schema:
+            $ref: "#/definitions/inline_response_500"
+      x-swagger-router-controller: "Menu"
+    patch:
+      tags:
+      - "menu"
+      summary: "修改后台菜单详情"
+      description: "修改菜单详情"
+      operationId: "editMenudetail"
+      consumes:
+      - "application/json"
+      - "multipart/form-data"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "menuId"
+        in: "query"
+        description: "菜单id"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Success"
+        400:
+          description: "An unexpected client error occured."
+        500:
+          description: "An unexpected error occured."
+          schema:
+            $ref: "#/definitions/inline_response_500"
+      x-swagger-router-controller: "Menu"
+  /todo/list:
+    get:
+      tags:
+      - "todo"
+      summary: "待办列表"
+      description: "获取待办列置"
+      operationId: "getTodoList"
+      consumes:
+      - "application/json"
+      - "multipart/form-data"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "Success"
+        400:
+          description: "An unexpected client error occured."
+        500:
+          description: "An unexpected error occured."
+          schema:
+            $ref: "#/definitions/inline_response_500"
+      x-swagger-router-controller: "Todo"
+  /todo/detail:
+    get:
+      tags:
+      - "todo"
+      summary: "获取待办事项"
+      description: "获取待办事项"
+      operationId: "getTododetail"
+      consumes:
+      - "application/json"
+      - "multipart/form-data"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "todoId"
+        in: "query"
+        description: "待办事项id"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Success"
+        400:
+          description: "An unexpected client error occured."
+        500:
+          description: "An unexpected error occured."
+          schema:
+            $ref: "#/definitions/inline_response_500"
+      x-swagger-router-controller: "Todo"
+    post:
+      tags:
+      - "todo"
+      summary: "新增待办事项"
+      description: "新建待办事项"
+      operationId: "postTododetail"
+      consumes:
+      - "application/json"
+      - "multipart/form-data"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "Success"
+        400:
+          description: "An unexpected client error occured."
+        500:
+          description: "An unexpected error occured."
+          schema:
+            $ref: "#/definitions/inline_response_500"
+      x-swagger-router-controller: "Todo"
+    delete:
+      tags:
+      - "todo"
+      summary: "删除待办事项"
+      description: "删除待办事项"
+      operationId: "delTododetail"
+      consumes:
+      - "application/json"
+      - "multipart/form-data"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "menuId"
+        in: "query"
+        description: "待办事项id"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Success"
+        400:
+          description: "An unexpected client error occured."
+        500:
+          description: "An unexpected error occured."
+          schema:
+            $ref: "#/definitions/inline_response_500"
+      x-swagger-router-controller: "Todo"
+    patch:
+      tags:
+      - "todo"
+      summary: "修改待办事项"
+      description: "修改待办事项"
+      operationId: "editTododetail"
+      consumes:
+      - "application/json"
+      - "multipart/form-data"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "todoId"
+        in: "query"
+        description: "待办事项id"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Success"
+        400:
+          description: "An unexpected client error occured."
+        500:
+          description: "An unexpected error occured."
+          schema:
+            $ref: "#/definitions/inline_response_500"
+      x-swagger-router-controller: "Todo"
+  /msg/list:
+    get:
+      tags:
+      - "msg"
+      summary: "后台消息列表"
+      description: "获取消息列表"
+      operationId: "getMsgList"
+      consumes:
+      - "application/json"
+      - "multipart/form-data"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "Success"
+        400:
+          description: "An unexpected client error occured."
+        500:
+          description: "An unexpected error occured."
+          schema:
+            $ref: "#/definitions/inline_response_500"
+      x-swagger-router-controller: "Msg"
+  /msg/detail:
+    get:
+      tags:
+      - "msg"
+      summary: "获取后台消息详情"
+      description: "获取消息详情"
+      operationId: "getMsgdetail"
+      consumes:
+      - "application/json"
+      - "multipart/form-data"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "msgId"
+        in: "query"
+        description: "消息id"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Success"
+        400:
+          description: "An unexpected client error occured."
+        500:
+          description: "An unexpected error occured."
+          schema:
+            $ref: "#/definitions/inline_response_500"
+      x-swagger-router-controller: "Msg"
+    post:
+      tags:
+      - "msg"
+      summary: "新增后台消息详情"
+      description: "新建消息详情"
+      operationId: "postMsgdetail"
+      consumes:
+      - "application/json"
+      - "multipart/form-data"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "Success"
+        400:
+          description: "An unexpected client error occured."
+        500:
+          description: "An unexpected error occured."
+          schema:
+            $ref: "#/definitions/inline_response_500"
+      x-swagger-router-controller: "Msg"
+    delete:
+      tags:
+      - "msg"
+      summary: "删除后台消息详情"
+      description: "删除消息详情"
+      operationId: "delMsgdetail"
+      consumes:
+      - "application/json"
+      - "multipart/form-data"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "msgId"
+        in: "query"
+        description: "消息id"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Success"
+        400:
+          description: "An unexpected client error occured."
+        500:
+          description: "An unexpected error occured."
+          schema:
+            $ref: "#/definitions/inline_response_500"
+      x-swagger-router-controller: "Msg"
+    patch:
+      tags:
+      - "msg"
+      summary: "修改后台消息详情"
+      description: "修改消息详情"
+      operationId: "editMsgdetail"
+      consumes:
+      - "application/json"
+      - "multipart/form-data"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "msgId"
+        in: "query"
+        description: "消息id"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Success"
+        400:
+          description: "An unexpected client error occured."
+        500:
+          description: "An unexpected error occured."
+          schema:
+            $ref: "#/definitions/inline_response_500"
+      x-swagger-router-controller: "Msg"
+  /log/list:
+    get:
+      tags:
+      - "log"
+      summary: "后台日志列表"
+      description: "获取日志列表"
+      operationId: "getLogList"
+      consumes:
+      - "application/json"
+      - "multipart/form-data"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "Success"
+        400:
+          description: "An unexpected client error occured."
+        500:
+          description: "An unexpected error occured."
+          schema:
+            $ref: "#/definitions/inline_response_500"
+      x-swagger-router-controller: "Log"
+  /log/detail:
+    get:
+      tags:
+      - "log"
+      summary: "获取后台日志详情"
+      description: "获取日志详情"
+      operationId: "getLogdetail"
+      consumes:
+      - "application/json"
+      - "multipart/form-data"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "logId"
+        in: "query"
+        description: "日志id"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Success"
+        400:
+          description: "An unexpected client error occured."
+        500:
+          description: "An unexpected error occured."
+          schema:
+            $ref: "#/definitions/inline_response_500"
+      x-swagger-router-controller: "Log"
+  /fileExport:
+    post:
+      tags:
+      - "download"
+      summary: "信息导出"
+      description: "根据id列表导出指定信息"
+      operationId: "exportFile"
+      consumes:
+      - "application/json"
+      - "multipart/form-data"
+      produces:
+      - "application/vnd.ms-excel"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "出库单的id列表"
+        required: true
+        schema:
+          $ref: "#/definitions/body_5"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/inline_response_200_3"
+        400:
+          description: "An unexpected client error occured."
+        500:
+          description: "An unexpected error occured."
+          schema:
+            $ref: "#/definitions/inline_response_500"
+      x-swagger-router-controller: "Download"
+securityDefinitions:
+  token:
+    type: "apiKey"
+    name: "token"
+    in: "query"
+definitions:
+  FaceInfo:
+    type: "object"
+    properties:
+      image_base64:
+        type: "string"
+        description: "图片base64编码"
+      return_attributes:
+        type: "string"
+        description: "返回参数"
+  lang:
+    type: "string"
+    description: "语言"
+  style:
+    type: "string"
+    description: "风格"
+  closed:
+    type: "boolean"
+    description: "true 已关闭  false 活动中"
+  deleted:
+    type: "boolean"
+    description: "true 已删除  false 未删除"
+  visible:
+    type: "boolean"
+    description: "true 可见  false 隐藏"
+  enabled:
+    type: "boolean"
+    description: "true 启用中  false 禁用中"
+  recruitSfId:
+    type: "string"
+    description: "唯一id snowflake ID"
+  enterpriseName:
+    type: "string"
+    description: "企业名称全名"
+  startTime:
+    type: "string"
+    description: "开始时间"
+  jobTitle:
+    type: "string"
+    description: "职位名"
+  salaryMin:
+    type: "string"
+    description: "企业薪资下限"
+  salaryMax:
+    type: "string"
+    description: "企业薪资下限"
+  salary:
+    type: "string"
+    description: "企业薪资"
+  location:
+    type: "string"
+    description: "工作地点"
+  jobDesc:
+    type: "string"
+    description: "职位描述"
+  requireExp:
+    type: "string"
+    description: "经验要求"
+  languageType:
+    type: "string"
+    description: "语言类型"
+    enum:
+    - "NODEJS"
+    - "JAVA"
+    - "PYTHON"
+    - "OTHER"
+    default: "OTHER"
+  operatorSfId:
+    type: "string"
+    description: "操作员snowflake ID"
+  operatorAdmin:
+    type: "boolean"
+    description: "true 是管理员  false 不是管理员"
+  operatorRoles:
+    type: "string"
+    description: "平台操作员权限控制字符串"
+  operatorUsername:
+    type: "string"
+    description: "平台操作员登录名"
+  operatorPassword:
+    type: "string"
+    description: "平台操作员登录密码"
+  mobile:
+    type: "string"
+    description: "手机号码"
+  email:
+    type: "string"
+    format: "email"
+    description: "email邮箱地址"
+  OrderBy:
+    type: "array"
+    description: "排序条件列表"
+    items:
+      $ref: "#/definitions/OrderBy_inner"
+  OrderByInner:
+    properties:
+      name:
+        type: "string"
+        description: "字段名"
+      order:
+        type: "string"
+        description: "顺序"
+        default: "ASC"
+        enum:
+        - "ASC"
+        - "DESC"
+  ExportList:
+    type: "object"
+    properties:
+      exportIds:
+        type: "string"
+    description: "导出id列表"
+  Filter:
+    required:
+    - "page"
+    - "pageSize"
+    properties:
+      page:
+        type: "integer"
+        format: "int32"
+        description: "页码，默认1"
+      pageSize:
+        type: "integer"
+        format: "int32"
+        description: "每页数量，默认10"
+      search:
+        type: "string"
+        description: "搜索模糊匹配关键字"
+  page:
+    type: "integer"
+    format: "int32"
+    description: "页码，默认1"
+  pageSize:
+    type: "integer"
+    format: "int32"
+    description: "每页数量，默认10"
+  search:
+    type: "string"
+    description: "搜索模糊匹配关键字"
+  Mailbody:
+    type: "object"
+    required:
+    - "message"
+    - "name"
+    properties:
+      name:
+        type: "string"
+        description: "名字"
+      email:
+        type: "string"
+        description: "邮箱地址"
+      message:
+        type: "string"
+        description: "信息"
+    description: "邮件内容"
+  AuthInfo:
+    type: "object"
+    required:
+    - "operatorPassword"
+    - "operatorUsername"
+    properties:
+      operatorUsername:
+        type: "string"
+        description: "平台操作员登录名"
+        maxLength: 128
+      operatorPassword:
+        type: "string"
+        description: "平台操作员登录密码"
+        maxLength: 255
+    description: "登录认证信息"
+  UserMiniInfo:
+    type: "object"
+    properties:
+      operatorSfId:
+        type: "string"
+        description: "操作员snowflake ID"
+        maxLength: 128
+      operatorUsername:
+        type: "string"
+        description: "平台操作员登录名"
+        maxLength: 128
+      token:
+        type: "string"
+    description: "用户信息"
+  RecruitList:
+    type: "array"
+    description: "出库单列表"
+    items:
+      $ref: "#/definitions/inline_response_200_2"
+  RecruitInfo:
+    type: "object"
+    properties:
+      recruitSfId:
+        type: "string"
+        description: "唯一id snowflake ID"
+      enterpriseName:
+        type: "string"
+        description: "企业名称全名"
+      startTime:
+        type: "string"
+        description: "开始时间"
+      jobTitle:
+        type: "string"
+        description: "职位名"
+      salaryMin:
+        type: "string"
+        description: "企业薪资下限"
+      salaryMax:
+        type: "string"
+        description: "企业薪资下限"
+      salary:
+        type: "string"
+        description: "企业薪资"
+      location:
+        type: "string"
+        description: "工作地点"
+      jobDesc:
+        type: "string"
+        description: "职位描述"
+      requireExp:
+        type: "string"
+        description: "经验要求"
+      languageType:
+        type: "string"
+        description: "语言类型"
+        default: "OTHER"
+        enum:
+        - "NODEJS"
+        - "JAVA"
+        - "PYTHON"
+        - "OTHER"
+  Error:
+    properties:
+      code:
+        type: "string"
+      message:
+        type: "string"
+  inline_response_200:
+    properties:
+      urls:
+        type: "string"
+  inline_response_500:
+    properties:
+      code:
+        type: "string"
+      message:
+        type: "string"
+  body:
+    type: "object"
+    required:
+    - "operatorPassword"
+    - "operatorUsername"
+    properties:
+      operatorUsername:
+        type: "string"
+        description: "平台操作员登录名"
+        maxLength: 128
+      operatorPassword:
+        type: "string"
+        description: "平台操作员登录密码"
+        maxLength: 255
+    description: "登录认证信息"
+  inline_response_200_1:
+    properties:
+      operatorSfId:
+        type: "string"
+        description: "操作员snowflake ID"
+        maxLength: 128
+      operatorUsername:
+        type: "string"
+        description: "平台操作员登录名"
+        maxLength: 128
+      token:
+        type: "string"
+    description: "用户信息"
+  body_1:
+    type: "object"
+    properties:
+      image_base64:
+        type: "string"
+        description: "图片base64编码"
+      return_attributes:
+        type: "string"
+        description: "返回参数"
+  body_2:
+    type: "object"
+    properties:
+      image_base64:
+        type: "string"
+        description: "图片base64编码"
+      return_attributes:
+        type: "string"
+        description: "返回参数"
+  body_3:
+    required:
+    - "page"
+    - "pageSize"
+    properties:
+      page:
+        type: "integer"
+        format: "int32"
+        description: "页码，默认1"
+      pageSize:
+        type: "integer"
+        format: "int32"
+        description: "每页数量，默认10"
+      search:
+        type: "string"
+        description: "搜索模糊匹配关键字"
+  inline_response_200_2:
+    properties:
+      recruitSfId:
+        type: "string"
+        description: "唯一id snowflake ID"
+      enterpriseName:
+        type: "string"
+        description: "企业名称全名"
+      startTime:
+        type: "string"
+        description: "开始时间"
+      jobTitle:
+        type: "string"
+        description: "职位名"
+      salaryMin:
+        type: "string"
+        description: "企业薪资下限"
+      salaryMax:
+        type: "string"
+        description: "企业薪资下限"
+      salary:
+        type: "string"
+        description: "企业薪资"
+      location:
+        type: "string"
+        description: "工作地点"
+      jobDesc:
+        type: "string"
+        description: "职位描述"
+      requireExp:
+        type: "string"
+        description: "经验要求"
+      languageType:
+        type: "string"
+        description: "语言类型"
+        default: "OTHER"
+        enum:
+        - "NODEJS"
+        - "JAVA"
+        - "PYTHON"
+        - "OTHER"
+  body_4:
+    type: "object"
+    required:
+    - "message"
+    - "name"
+    properties:
+      name:
+        type: "string"
+        description: "名字"
+      email:
+        type: "string"
+        description: "邮箱地址"
+      message:
+        type: "string"
+        description: "信息"
+    description: "邮件内容"
+  body_5:
+    type: "object"
+    properties:
+      exportIds:
+        type: "string"
+    description: "导出id列表"
+  inline_response_200_3:
+    properties:
+      urls:
+        type: "string"
+  OrderBy_inner:
+    properties:
+      name:
+        type: "string"
+        description: "字段名"
+      order:
+        type: "string"
+        description: "顺序"
+        default: "ASC"
+        enum:
+        - "ASC"
+        - "DESC"
+parameters:
+  pageLang:
+    name: "pageLang"
+    in: "query"
+    description: "页面语言"
+    required: false
+    type: "string"
+  pageStyle:
+    name: "pageStyle"
+    in: "query"
+    description: "页面风格"
+    required: false
+    type: "string"
+  operatorUsername:
+    name: "operatorUsername"
+    in: "path"
+    description: "退出登录参数"
+    required: true
+    type: "string"
+  operatorId:
+    name: "operatorId"
+    in: "path"
+    description: "管理员ID"
+    required: true
+    type: "string"
+  startTime:
+    name: "startTime"
+    in: "query"
+    description: "起始日期"
+    required: false
+    type: "string"
+  endTime:
+    name: "endTime"
+    in: "query"
+    description: "截止日期"
+    required: false
+    type: "string"
+  page:
+    name: "page"
+    in: "query"
+    description: "页码"
+    required: false
+    type: "integer"
+    default: 1
+    format: "int32"
+  pageSize:
+    name: "pageSize"
+    in: "query"
+    description: "每页数量"
+    required: false
+    type: "integer"
+    default: 10
+    format: "int32"
+  userinfo:
+    in: "body"
+    name: "body"
+    description: "登录验证信息"
+    required: true
+    schema:
+      type: "object"
+      required:
+      - "operatorPassword"
+      - "operatorUsername"
+      properties:
+        operatorUsername:
+          type: "string"
+          description: "平台操作员登录名"
+          maxLength: 128
+        operatorPassword:
+          type: "string"
+          description: "平台操作员登录密码"
+          maxLength: 255
+      description: "登录认证信息"
+  faceinfo:
+    in: "body"
+    name: "body"
+    description: "登录验证信息"
+    required: true
+    schema:
+      type: "object"
+      properties:
+        image_base64:
+          type: "string"
+          description: "图片base64编码"
+        return_attributes:
+          type: "string"
+          description: "返回参数"
+responses:
+  Standard500ErrorResponse:
+    description: "An unexpected error occured."
+    schema:
+      type: "object"
+      properties:
+        code:
+          type: "string"
+        message:
+          type: "string"
+  Standard204Response:
+    description: "empty content."
+  Standard400ErrorResponse:
+    description: "An unexpected client error occured."
+  Standard200Response:
+    description: "Success"
+  postAuth:
+    description: "Success"
+    schema:
+      type: "object"
+      description: "用户信息"
+      properties:
+        operatorSfId:
+          type: "string"
+          description: "操作员snowflake ID"
+          maxLength: 128
+        operatorUsername:
+          type: "string"
+          description: "平台操作员登录名"
+          maxLength: 128
+        token:
+          type: "string"
+    examples:
+      application/json:
+        operatorSfId: "1234567894554"
+        operatorUsername: "dawei"
+        token: "asdfasdfasdflasdfawqiegfasd.asdfjasdgasncxuawetrfnh"
+  RecruitList:
+    description: "Success"
+    schema:
+      type: "array"
+      description: "出库单列表"
+      items:
+        type: "object"
+        properties:
+          recruitSfId:
+            type: "string"
+            description: "唯一id snowflake ID"
+          enterpriseName:
+            type: "string"
+            description: "企业名称全名"
+          startTime:
+            type: "string"
+            description: "开始时间"
+          jobTitle:
+            type: "string"
+            description: "职位名"
+          salaryMin:
+            type: "string"
+            description: "企业薪资下限"
+          salaryMax:
+            type: "string"
+            description: "企业薪资下限"
+          salary:
+            type: "string"
+            description: "企业薪资"
+          location:
+            type: "string"
+            description: "工作地点"
+          jobDesc:
+            type: "string"
+            description: "职位描述"
+          requireExp:
+            type: "string"
+            description: "经验要求"
+          languageType:
+            type: "string"
+            description: "语言类型"
+            default: "OTHER"
+            enum:
+            - "NODEJS"
+            - "JAVA"
+            - "PYTHON"
+            - "OTHER"
+    examples:
+      application/json:
+      - recruitSfId: "asdfgh123456"
+        enterpriseName: "jklmn7890"
+        startTime: "2016-12-12"
+        jobTitle: "iop09876"
+        salaryMin: "5000"
+        salaryMax: "10000"
+        salary: ""
+        location: "cd"
+        jobDesc: "blabla"
+        requireExp: "above 3 years"
+        languageType: "OTHER"

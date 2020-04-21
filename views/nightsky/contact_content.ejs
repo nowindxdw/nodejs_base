@@ -1,0 +1,46 @@
+<div id="site_content">
+    <div id="banner_image">
+        <div id="slider-wrapper">
+            <div id="slider" class="nivoSlider">
+                <img src="/nightsky/images/home_1.jpg" alt="" />
+                <img src="/nightsky/images/home_2.jpg" alt="" />
+            </div><!--close slider-->
+        </div><!--close slider_wrapper-->
+    </div><!--close banner_image-->
+
+    <div class="sidebar_container">
+        <div class="sidebar">
+            <div class="sidebar_item">
+                <h2><%= content.welcome.title%></h2>
+                <p><%= content.welcome.content%></p>
+            </div><!--close sidebar_item-->
+        </div><!--close sidebar-->
+        <div class="sidebar">
+            <div class="sidebar_item">
+                <h2><%= content.latestUpdate.title%></h2>
+                <h3><%= content.latestUpdate.title1%></h3>
+                <p><%= content.latestUpdate.content1%></p>
+            </div><!--close sidebar_item-->
+        </div><!--close sidebar-->
+        <div class="sidebar">
+            <div class="sidebar_item">
+                <h3><%= content.latestUpdate.title2%></h3>
+                <p><%= content.latestUpdate.content2%></p>
+            </div><!--close sidebar_item-->
+        </div><!--close sidebar-->
+    </div><!--close sidebar_container-->
+    <div id="content">
+        <div class="content_item">
+		  <div class="form_settings">
+            <h2><%= contact.title%></h2>
+            <p><%= contact.desc%></p>
+			<p>&nbsp;</p>
+			<p><span><%= contact.name%></span><input class="contact" id='concact_name' type="text" name="your_name" value="" /></p>
+			<p><span><%= contact.email%></span><input class="contact"  id='concact_email' type="text" name="your_email" value="" /></p>
+			<p><span><%= contact.message%></span><textarea class="contact textarea" id='concact_msg' rows="8" cols="50" name="your_message"></textarea></p>
+            <p style="padding-top: 15px"><span>&nbsp;</span><input class="submit" type="submit" onclick="btnSend()" name="contact_submitted" value="<%= contact.send%>" /></p>
+          </div><!--close form_settings-->
+		</div><!--close content_item-->
+      </div><!--close content-->   
+
+</div>
