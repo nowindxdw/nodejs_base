@@ -5,9 +5,14 @@
 2.INSTALL
 ```
 $ . ./bin/setenv.sh                         # 有两个点，不要省略第一个点
-$ npm install
+$ npm install 
 $ npm start
 ```
+3.url in browers:
+```
+http://0.0.0.0:3456/v1/api/index
+```
+
 
 清空数据库
 ```

@@ -22,7 +22,6 @@ var mockConfig = config.get("mockMode");
 var logConfig = config.get("logger");
 var dbConfig = config.get("mysql");
 var redisConfig = config.get("redis");
-var schedulerConfig = config.get("scheduler");
 var localConfig = config.get('local');
 if (!dbConfig.dialect)
     dbConfig['dialect'] = 'mysql';
