@@ -6,10 +6,10 @@ const _ = require('lodash');
 const Logger = require('logger-ro');
 const logger = new Logger(__logConfig);
 const tencentyun = require('tencentyun');
-const APPID = "1253969128";
-const SECRETID = "AKIDAIG7nIDmqkV4hDhdRCtU3Vq3CWnwRwqf";
-const SECRETKEY = "uhN0WvJbmpmcMbyCGMrBKH5iU7ezA9wF";
-const BUCKET = "dawei";
+const APPID = "123456789";
+const SECRETID = "qqqqqqq";
+const SECRETKEY = "sssssssss";
+const BUCKET = "dadadad";
 module.exports = {
     /**
      * 签名
