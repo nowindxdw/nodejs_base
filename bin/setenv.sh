@@ -1,6 +1,6 @@
 #!/bin/bash -x
 
-export PROJECT_NAME='Recruitments'
+export PROJECT_NAME='nodejs_base'
 export PROJECT_ROOT=`pwd | sed "s/${PROJECT_NAME}.*/${PROJECT_NAME}/g"`
 
 # Alias
