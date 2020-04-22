@@ -47,40 +47,41 @@ module.exports = {
      */
     getTodayWeather: function(ip,callback){
         logger.trace('Enter into getTodayWeather');
-        var api = require('../interfaces/baiduApi/api.js');
-        var config = require("config");
-        var ak = config.get("baiduAK");
-        api.getIP(ip,ak,"",function(err,result){
-            if(err){
-                return callback(err);
-            }
-            if(result.status!=200){
-                return callback("baidu api call err");
-            }
-
-            try{
-                var resObj = JSON.parse(result.text);
-                var cityName = resObj.content.address_detail.city;
-            }catch(err){
-                return callback(err)
-            }
-            // logger.debug(cityName);
-            api.getWeather(cityName,ak,"json",function(err,result){
-                if(err){
-                    return callback(err);
-                }
-                if(result.status!=200){
-                    return callback("baidu api call err");
-                }
-                try{
-                    var weatherObj = JSON.parse(result.text);
-                }catch(err){
-                    return callback(err)
-                }
-                // logger.debug(weatherObj);
-                callback(null,weatherObj);
-            })
-        })
+        // var api = require('../interfaces/baiduApi/api.js');
+        // var config = require("config");
+        // var ak = config.get("baiduAK");
+        // api.getIP(ip,ak,"",function(err,result){
+        //     if(err){
+        //         return callback(err);
+        //     }
+        //     if(result.status!=200){
+        //         return callback("baidu api call err");
+        //     }
+        //
+        //     try{
+        //         var resObj = JSON.parse(result.text);
+        //         var cityName = resObj.content.address_detail.city;
+        //     }catch(err){
+        //         return callback(err)
+        //     }
+        //     // logger.debug(cityName);
+        //     api.getWeather(cityName,ak,"json",function(err,result){
+        //         if(err){
+        //             return callback(err);
+        //         }
+        //         if(result.status!=200){
+        //             return callback("baidu api call err");
+        //         }
+        //         try{
+        //             var weatherObj = JSON.parse(result.text);
+        //         }catch(err){
+        //             return callback(err)
+        //         }
+        //         // logger.debug(weatherObj);
+        //         callback(null,weatherObj);
+        //     })
+        // })
+        callback("not config baiduapi")
     },
     /**
      * 获取今日新闻数据（大成网）

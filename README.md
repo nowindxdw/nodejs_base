@@ -4,7 +4,7 @@
 
 2.INSTALL
 ```
-$ . ./bin/setenv.sh                         # 有两个点，不要省略第一个点
+$ . ./bin/setenv.sh          # 有两个点，不要省略第一个点
 $ npm install 
 $ npm start
 ```
@@ -13,27 +13,11 @@ $ npm start
 http://0.0.0.0:3456/v1/api/index
 ```
 
-
-清空数据库
-```
-npm run cleardb
-```
-
-重建测试数据
-```
-npm run initdb
-```
-
-再次新开Terminal启动时复制
-```
-$ . ./bin/setenv.sh       # 仅在新开Terminal时设置一次即可
-$ npm start
-```
 环境配置检查
 ```
 $ node bin/envcheck.js
 ```
-再次在已经启动过的Terminal中启动时复制
+再次在已经启动过的Terminal中启动时
 ```
 $ npm start 
 ```
@@ -48,12 +32,15 @@ $ npm run mkdocs
 $ npm run viewdocs
 ```
 
-执行单元测试复制
+执行单元测试
 ```
 $ npm test
 ```
 
-
+db init  to test login dashbord
+```
+$ npm run initdb
+```
 
 - dir structer
 

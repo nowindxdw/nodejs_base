@@ -16,7 +16,7 @@ describe(" unit script for init test data", function(){
              var dbConfig = config.get("mysql");
              var dbName = dbConfig.cloudDBPrefix;
              var db = mysql.createPool(dbConfig);
-             console.log("init database : " + dbName);
+             console.log("init database : " + dbName+"username :18980712136 pwd:100821" );
              var sql = "insert "+dbName+".Operators (operatorSfId,operatorUsername,operatorPassword," +
                  "visible,operatorAdmin,enabled,operatorName,mobile,email,operatorRoles,createdAt,updatedAt)" +
                  " values ('140000000001','18980712136','VFZSQmQwOUVTWGc9',1,1,1,'dawei','18980712136'," +

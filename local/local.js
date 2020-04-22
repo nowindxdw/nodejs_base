@@ -22,10 +22,10 @@ const en = {
 const header = {
     "cn":{
         "lang":"cn",
-        "name":"大维",
-        "title":" 大维小窝",
-        "description":"大维家的主页",
-        "keywords":" dawei home lingsheng 大维"
+        "name":"example",
+        "title":" example title",
+        "description":"example index page",
+        "keywords":"home page"
     },
     "en":{
         "lang":"en",
@@ -38,7 +38,7 @@ const header = {
 };
 const menubar = {
     "cn":{
-        "welcome":"欢迎来到大维小窝",
+        "welcome":"欢迎到来主页",
         "Home":"主页",
         "Skill":"技艺",
         "Life":"生活",
@@ -106,7 +106,7 @@ const maincontent = {
     },
     "en":{
         "welcome":{
-            "title":"Welcome",
+            "title":"Welcome TO INDEX PAGE",
             "content":"Welcome to my website. |Please have a look around, |any feedback is much appreciated.",
         },
         "latestUpdate":{

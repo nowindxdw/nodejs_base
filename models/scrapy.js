@@ -55,7 +55,7 @@ module.exports = function () {
             var url = data[0];
             logger.trace(url);
             var $ = cheerio.load(data[1]);
-            console.log(data[1])
+            // console.log(data[1])
             //通过jquery方式获取内容链接
             var topnewsEle =$('.news_top');
             var topNews=[];
@@ -148,7 +148,7 @@ module.exports = function () {
                 var dataList=[];
                 data.each(function(idx,dataItem){
                     var $dataItem = $(dataItem);
-                    console.log($dataItem.text());
+                    // console.log($dataItem.text());
                     dataList.push($dataItem.text());
                 })
 
