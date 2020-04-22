@@ -54,7 +54,7 @@
     "redis-connection-factory-ro": "^1.0.0",
     "request": "^2.88.2",
     "reverse-mustache": "^1.8.0",
-    "sequelize": "^3.24.8",
+    "sequelize": "^5.15.1",
     "snowflakeid-ro": "^1.0.0",
     "sprintf": "^0.1.5",
     "strftime": "=0.9.2",
