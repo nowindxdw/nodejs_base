@@ -1,4 +1,12 @@
 # SimpleExample for nodejs
+
+- 结合原始的Express进行改造，将用户登录校验（JWT）和Swagger定制API结合。
+- 将数据库结构定义和生成用工具sequelize统一。
+- 将接口定义和代码分层用swagger-gen工具实现自动化。
+- 在需求文档明确的情况下代码架构自动生成，后端只需关心逻辑部分实现。
+- 结合mocha测试框架，完全可以进行TDD方式的开发， 最大限度减少对接和测试工作。
+- 同时以规范的jsdoc书写函数还能自动提取并生成文档，使得编写后端文档不再是负担。
+
 # by dawei
 1. CHANGE config.yaml to /config
 
