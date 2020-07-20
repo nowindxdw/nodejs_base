@@ -44,7 +44,7 @@
     "js-yaml": "^3.3.0",
     "jsonwebtoken": "^7.1.9",
     "knex": "^0.13.0",
-    "lodash": "^4.6.16",
+    "lodash": "^4.17.19",
     "logger-ro": "^1.0.0",
     "moment": "~2.15.2",
     "msexcel-builder": "=0.0.2",
