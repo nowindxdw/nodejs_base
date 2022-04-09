@@ -46,7 +46,7 @@
     "knex": "^0.13.0",
     "lodash": "^4.6.16",
     "logger-ro": "^1.0.0",
-    "moment": "~2.15.2",
+    "moment": "~2.29.2",
     "msexcel-builder": "=0.0.2",
     "mysql": "^2.11.1",
     "nodemailer": "^4.0.1",
